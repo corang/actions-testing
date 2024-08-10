@@ -16,7 +16,7 @@ on:
 jobs:
   called-wf:
     runs-on: ubuntu-latest
-    if: contains(fromJson('["upstream", "unicorn"]'), '${{ inputs.flavor }}')
+    if: contains(fromJson('["upstream", "unicorn"]'), 'zzz')
     steps:
       - name: echo inputs
         run: |

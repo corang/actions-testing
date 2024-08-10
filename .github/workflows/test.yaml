@@ -9,7 +9,10 @@ jobs:
     steps:
       - name: Skip check
         id: skip-check
-        run: echo 'TESTEDFLAVORS=upstream,unicorn' >> "$GITHUB_OUTPUT"
+        run: |
+          echo upstream >> testfile
+          echo unicorn >> testfile
+          echo 'UPGRADEFLAVORS=$(cat testfile)' >> "$GITHUB_OUTPUT"
     outputs:
       TESTEDFLAVORS: ${{ steps.skip-check.outputs.TESTEDFLAVORS }}
   verify:

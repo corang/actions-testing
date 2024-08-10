@@ -1,0 +1,14 @@
+name: Verify
+
+on:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        type: [install, upgrade, breaking-change]
+        flavor: [upstream, registry1, unicorn]
+    uses: ./.github/workflows/called.yaml

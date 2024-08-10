@@ -1,0 +1,11 @@
+name: called-wf
+
+on:
+  workflow_call:
+
+jobs:
+  called-wf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: some test
+        run: echo tests

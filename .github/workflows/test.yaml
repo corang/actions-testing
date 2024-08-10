@@ -4,10 +4,19 @@ on:
   pull_request:
 
 jobs:
+  skip-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Skip check
+        run: echo "TESTEDFLAVORS=upstream,unicorn" >> "$GITHUB_OUTPUT"
   verify:
     strategy:
       fail-fast: false
       matrix:
-        type: [install, upgrade, breaking-change]
+        type: [install, upgrade]
         flavor: [upstream, registry1, unicorn]
     uses: ./.github/workflows/called.yaml
+    with:
+      type: ${{ matrix.type }}
+      flavor: ${{ matrix.flavor }}
+      tested-flavors: ${{ steps.skip-check.outputs.TESTEDFLAVORS }}

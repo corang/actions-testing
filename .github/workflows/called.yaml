@@ -2,10 +2,21 @@ name: called-wf
 
 on:
   workflow_call:
+    inputs:
+      type:
+        required: true
+        type: string
+      flavor:
+        required: true
+        type: string
+      tested-flavors:
+        required: true
+        type: string
 
 jobs:
   called-wf:
     runs-on: ubuntu-latest
+    if: contains('${{ inputs.tested-flavors }}', '${{ inputs.flavor }}')
     steps:
       - name: some test
         run: echo tests

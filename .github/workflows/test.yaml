@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Skip check
+        id: skip-check
         run: echo "TESTEDFLAVORS=upstream,unicorn" >> "$GITHUB_OUTPUT"
     outputs:
       TESTEDFLAVORS: ${{ steps.skip-check.outputs.TESTEDFLAVORS }}

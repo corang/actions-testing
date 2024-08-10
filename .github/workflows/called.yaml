@@ -16,7 +16,7 @@ on:
 jobs:
   called-wf:
     runs-on: ubuntu-latest
-    if: contains(fromJson(${{ inputs.tested-flavors }}), 'registry1')
+    if: contains(fromJson(${{ github.event.inputs.tested-flavors }}), 'registry1')
     steps:
       - name: echo inputs
         run: |

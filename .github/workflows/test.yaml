@@ -12,7 +12,7 @@ jobs:
         run: |
           echo upstream >> testfile
           echo unicorn >> testfile
-          echo 'UPGRADEFLAVORS=$(cat testfile)' >> "$GITHUB_OUTPUT"
+          echo 'UPGRADEFLAVORS=upstream,unicorn' >> "$GITHUB_OUTPUT"
     outputs:
       UPGRADEFLAVORS: ${{ steps.skip-check.outputs.UPGRADEFLAVORS }}
   verify:

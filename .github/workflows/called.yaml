@@ -9,17 +9,17 @@ on:
       flavor:
         required: true
         type: string
-      tested-flavors:
+      upgrade-flavors:
         required: true
         type: string
 
 jobs:
   called-wf:
     runs-on: ubuntu-latest
-    if: contains(inputs.tested-flavors, inputs.flavor)
+    if: contains(inputs.upgrade-flavors, inputs.flavor)
     steps:
       - name: echo inputs
         run: |
-          echo "type: ${{ inputs.type }}, flavor: ${{ inputs.flavor }}, tested-flavors: ${{ inputs.tested-flavors }}"
+          echo "type: ${{ inputs.type }}, flavor: ${{ inputs.flavor }}, upgrade-flavors: ${{ inputs.upgrade-flavors }}"
       - name: some test
         run: echo tests

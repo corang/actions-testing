@@ -14,7 +14,7 @@ jobs:
           echo unicorn >> testfile
           echo 'UPGRADEFLAVORS=$(cat testfile)' >> "$GITHUB_OUTPUT"
     outputs:
-      TESTEDFLAVORS: ${{ steps.skip-check.outputs.TESTEDFLAVORS }}
+      UPGRADEFLAVORS: ${{ steps.skip-check.outputs.UPGRADEFLAVORS }}
   verify:
     needs: skip-check
     strategy:
@@ -26,4 +26,4 @@ jobs:
     with:
       type: ${{ matrix.type }}
       flavor: ${{ matrix.flavor }}
-      tested-flavors: ${{ needs.skip-check.outputs.TESTEDFLAVORS }}
+      upgrade-flavors: ${{ needs.skip-check.outputs.UPGRADEFLAVORS }}

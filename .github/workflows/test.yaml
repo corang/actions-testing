@@ -1,0 +1,29 @@
+name: Verify
+
+on:
+  pull_request:
+
+jobs:
+  skip-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Skip check
+        id: skip-check
+        run: |
+          echo upstream >> testfile
+          echo unicorn >> testfile
+          echo 'UPGRADEFLAVORS=upstream,unicorn' >> "$GITHUB_OUTPUT"
+    outputs:
+      UPGRADEFLAVORS: ${{ steps.skip-check.outputs.UPGRADEFLAVORS }}
+  verify:
+    needs: skip-check
+    strategy:
+      fail-fast: false
+      matrix:
+        type: [install, upgrade]
+        flavor: [upstream, registry1, unicorn]
+    uses: ./.github/workflows/called.yaml
+    with:
+      type: ${{ matrix.type }}
+      flavor: ${{ matrix.flavor }}
+      upgrade-flavors: ${{ needs.skip-check.outputs.UPGRADEFLAVORS }}

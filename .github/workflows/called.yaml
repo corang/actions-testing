@@ -16,7 +16,8 @@ on:
 jobs:
   called-wf:
     runs-on: ubuntu-latest
-    if: contains(fromJson('${{ inputs.tested-flavors }}'), ${{ inputs.flavor }})
+    if: false
+    # if: contains(fromJson('${{ inputs.tested-flavors }}'), ${{ inputs.flavor }})
     steps:
       - name: echo inputs
         run: |

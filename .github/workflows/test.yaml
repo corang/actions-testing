@@ -10,6 +10,7 @@ jobs:
       - name: Skip check
         run: echo "TESTEDFLAVORS=upstream,unicorn" >> "$GITHUB_OUTPUT"
   verify:
+    needs: skip-check
     strategy:
       fail-fast: false
       matrix:
@@ -19,4 +20,4 @@ jobs:
     with:
       type: ${{ matrix.type }}
       flavor: ${{ matrix.flavor }}
-      tested-flavors: ${{ steps.skip-check.outputs.TESTEDFLAVORS }}
+      tested-flavors: ${{ needs.skip-check.outputs.TESTEDFLAVORS }}

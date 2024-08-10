@@ -16,7 +16,7 @@ on:
 jobs:
   called-wf:
     runs-on: ubuntu-latest
-    if: contains(inputs.upgrade-flavors, inputs.flavor)
+    if: contains(inputs.upgrade-flavors, inputs.flavor) || inputs.type == 'install'
     steps:
       - name: echo inputs
         run: |

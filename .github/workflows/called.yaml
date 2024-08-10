@@ -16,7 +16,7 @@ on:
 jobs:
   called-wf:
     runs-on: ubuntu-latest
-    if: contains(fromJson('["upstream", "unicorn"]'), 'zzz')
+    if: contains(fromJson('["upstream", "unicorn"]'), 'uzzz')
     steps:
       - name: echo inputs
         run: |
